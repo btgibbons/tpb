@@ -1,0 +1,25 @@
+<launch>
+    <arg name="username" 								/>
+    <arg name="oa_key" />
+
+	<node pkg="tpb" type="robot_mover.py" name="left_robot_mover" output="screen" >
+		<param name="side" value="left" />
+		<param name="invert" value="False" />
+	</node>
+    <node pkg="tpb" type="robot_mover.py" name="right_robot_mover" output="screen" >
+		<param name="side" value="right" />
+		<param name="invert" value="False" />
+	</node>
+    <node pkg="tpb" type="vote_tracker.py" name="left_vote_tracker" output="screen" >
+        <param name="side" value="left" />
+		<param name="invert" value="False" />
+        <param name="oa_key" value="$(arg oa_key)" />
+		<param name="username" value="$(arg username)" />
+	</node>
+    <node pkg="tpb" type="vote_tracker.py" name="right_vote_tracker" output="screen" >
+        <param name="side" value="right" />
+		<param name="invert" value="False" />
+        <param name="oa_key" value="$(arg oa_key)" />
+		<param name="username" value="$(arg username)" />
+	</node>
+</launch>
